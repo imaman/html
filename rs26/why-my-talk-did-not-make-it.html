@@ -299,6 +299,7 @@
       font-weight: 500;
     }
 
+    /* ---------- resource link cards ---------- */
     .resources {
       list-style: none;
       padding: 0;
@@ -307,6 +308,10 @@
     }
 
     .resources li {
+      margin: 0;
+    }
+
+    .resources a {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -315,13 +320,43 @@
       border: 1px solid var(--line);
       border-radius: 12px;
       background: var(--panel);
-      margin: 0;
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
     }
 
-    .resources li span {
+    .resources a:hover,
+    .resources a:focus-visible {
+      border-color: var(--accent);
+      background: #1a2244;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .resources .name {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .resources .src {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       color: var(--muted);
       font-size: 0.9rem;
       white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+
+    .resources a:hover .src {
+      color: var(--text);
+    }
+
+    .resources .src svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      fill: currentColor;
     }
 
     .closing {
@@ -365,10 +400,10 @@
         border-radius: 12px;
       }
 
-      .resources li {
+      .resources a {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.25rem;
+        gap: 0.35rem;
       }
     }
 
@@ -399,6 +434,16 @@
           opacity: 1;
           transform: scale(1.5);
         }
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .resources a {
+        transition: none;
+      }
+
+      .resources a:hover {
+        transform: none;
       }
     }
 
@@ -474,7 +519,7 @@
 
     <div class="keyline">
       לפני הכל, חשוב לנו להדגיש את זה: הגשה שנדחתה היא שלב בדרך, לא סוף. לא מעט מהדוברים שהתקבלו השנה
-      <a href="https://summit2026.reversim.com/reports/cfp" target="_blank" rel="noopener">הגישו במופעים קודמים</a> ולא
+      <a href="https://summit2026.reversim.com/reports/cfp/" target="_blank" rel="noopener">הגישו במופעים קודמים</a> ולא
       התקבלו אז. לכן, העצה הכי טובה היא:
       <strong>תמשיכו לנסות!</strong>
     </div>
@@ -502,8 +547,7 @@
       תיכנס. למה? גיוון. בראייה כוללנית של הערך, לקהל עדיף לא לשמוע הרצאה שחופפת להרצאה קודמת.</p>
     <p>ספציפית השנה נושאים כמו "Building a company brain" או "Running Agents in Production" היו מאוד פופולריים. הגשות
       שהתמקדו בנושאים כאלה מצאו את עצמן בתחרות קשה יחסית
-      (ראו גם את <a href="https://summit2026.reversim.com/reports/cfp" target="_blank" rel="noopener">ענן המילים</a>)
-      .</p>
+      (ראו גם את <a href="https://summit2026.reversim.com/reports/cfp/" target="_blank" rel="noopener">ענן המילים</a>).</p>
     <p>בנוסף, הרצאה יכולה להידחות בגלל הכללים הקשיחים שהזכרנו מקודם. למשל: סיטואציה שבה יש שלוש הרצאות מאותה חברה בשלושה
       מסלולים שונים. במקרה כזה, נפעיל שיקול דעת ויש סיכוי גבוה שאחת ההגשות מבין השלוש תידחה, למרות שייתכן שכל השלוש
       מצוינות (המספרים להמחשה בלבד).</p>
@@ -585,15 +629,30 @@
       מזווית לא טיפוסית. זה יכול להיות הסקטור שבו פועלת החברה ו/או הרקע האישי של המגיש. למשל, בהתלבטות בין שתי הרצאות
       בעלות איכות דומה, נעדיף את זאת שהגיעה ממגיש שעדיין לא היה דובר בכנס. <a
         href="https://summit2026.reversim.com/reports/cfp/" target="_blank" rel="noopener">61% מהדוברים ברברסים 26</a>
-      יהיו
-      כאלה שזאת הפעם הראשונה שלהם בכנס.</p>
+      יהיו כאלה שזאת הפעם הראשונה שלהם בכנס.</p>
 
     <h2>עוד חומר</h2>
     <p>פרט למה שנכתב פה, מומלץ מאד לצפות בהקלטות של סדנאות ה-CFP. יש בהן הרבה מידע על תהליך הקבלה וטיפים שיכולים לסייע
       לכל מי שרוצה להגיש בעתיד:</p>
     <ul class="resources">
-      <li><strong>CFP Workshop 2025</strong><span>הקלטת סדנה</span></li>
-      <li><strong>MeDS Club: Reversim 2026 CFP Session</strong><span>הקלטת מפגש</span></li>
+      <li>
+        <a href="https://www.youtube.com/watch?v=MrUWRHssI6A" target="_blank" rel="noopener">
+          <span class="name">CFP Workshop 2025</span>
+          <span class="src">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 8.5v7l6-3.5-6-3.5zM12 3c5 0 8.2.3 9.4.6.8.2 1.3.8 1.5 1.6.3 1.3.5 3.5.5 6.8s-.2 5.5-.5 6.8c-.2.8-.7 1.4-1.5 1.6-1.2.3-4.4.6-9.4.6s-8.2-.3-9.4-.6c-.8-.2-1.3-.8-1.5-1.6C.3 17.5.1 15.3.1 12s.2-5.5.5-6.8c.2-.8.7-1.4 1.5-1.6C3.8 3.3 7 3 12 3z"/></svg>
+            YouTube
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/watch?v=TmspogdEt3Y" target="_blank" rel="noopener">
+          <span class="name">MeDS Club: Reversim 2026 CFP Session</span>
+          <span class="src">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 8.5v7l6-3.5-6-3.5zM12 3c5 0 8.2.3 9.4.6.8.2 1.3.8 1.5 1.6.3 1.3.5 3.5.5 6.8s-.2 5.5-.5 6.8c-.2.8-.7 1.4-1.5 1.6-1.2.3-4.4.6-9.4.6s-8.2-.3-9.4-.6c-.8-.2-1.3-.8-1.5-1.6C.3 17.5.1 15.3.1 12s.2-5.5.5-6.8c.2-.8.7-1.4 1.5-1.6C3.8 3.3 7 3 12 3z"/></svg>
+            YouTube
+          </span>
+        </a>
+      </li>
     </ul>
 
     <h2>לסיום</h2>
